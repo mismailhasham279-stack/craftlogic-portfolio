@@ -425,7 +425,16 @@ export function WhyMe() {
 
 /* ---------------- About + Tech ---------------- */
 
-const TECH = ["HTML", "CSS", "JavaScript", "React", "Node.js", "Tailwind CSS", "Add tool", "Add tool"];
+const TECH = [
+  "HTML",
+  "CSS",
+  "JavaScript",
+  "React",
+  "Node.js",
+  "Tailwind CSS",
+  "+ Add tool",
+  "+ Add tool 2",
+];
 
 export function About() {
   return (
