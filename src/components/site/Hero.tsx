@@ -51,7 +51,7 @@ export function Hero() {
             </span>
           </div>
 
-          <h1 className="font-display mt-8 text-[2.6rem] leading-[1.02] font-bold tracking-tight sm:text-6xl lg:text-[4.4rem]">
+          <h1 className="font-display mt-8 text-[2.6rem] leading-[1.02] font-bold tracking-tight sm:text-6xl lg:text-[3.9rem]">
             {HEADLINE.map((line, i) => (
               <span key={line} className="block overflow-hidden">
                 <span
@@ -148,7 +148,7 @@ function BrowserMock() {
 function PhoneMock() {
   return (
     <div
-      className="float-slow hairline absolute -bottom-10 -left-4 hidden w-[132px] overflow-hidden rounded-[1.4rem] bg-surface-2 p-2 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.9)] sm:block"
+      className="float-slow hairline absolute -bottom-12 -left-10 hidden w-[132px] overflow-hidden rounded-[1.4rem] bg-surface-2 p-2 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.9)] sm:block"
       style={{ animationDelay: "1.2s" }}
     >
       <div className="hairline space-y-3 rounded-[1rem] bg-background p-3">
