@@ -38,7 +38,7 @@ export function MagneticButton({ href, children, variant = "solid", className }:
         className,
       )}
     >
-      <span>{children}</span>
+      {children}
     </a>
   );
 }
