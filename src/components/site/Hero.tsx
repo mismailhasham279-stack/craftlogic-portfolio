@@ -1,32 +1,54 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowDown } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import { MagneticButton } from "./MagneticButton";
+import { DeviceShowcase } from "./DeviceShowcase";
+import { projects } from "@/data/projects";
+import { cn } from "@/lib/utils";
 
-const HEADLINE = ["I Build Digital", "Experiences That Make", "Businesses Stand Out."];
+const HEADLINE = ["I Build Websites", "That Help", "Businesses Grow."];
 
 export function Hero() {
   const [mounted, setMounted] = useState(false);
+  const [active, setActive] = useState(0);
   const visualRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     setMounted(true);
     const el = visualRef.current;
     if (!el) return;
-    if (window.matchMedia("(max-width: 768px), (prefers-reduced-motion: reduce)").matches) return;
+    if (window.matchMedia("(max-width: 900px), (prefers-reduced-motion: reduce)").matches) return;
+
     let frame = 0;
+    let scrollY = 0;
+    let mx = 0;
+    let my = 0;
+    const apply = () => {
+      frame = 0;
+      el.style.transform = `translate3d(${mx}px, ${my - Math.min(scrollY, 700) * 0.06}px, 0)`;
+    };
+    const queue = () => {
+      if (!frame) frame = requestAnimationFrame(apply);
+    };
     const onScroll = () => {
-      if (frame) return;
-      frame = requestAnimationFrame(() => {
-        frame = 0;
-        el.style.transform = `translateY(${Math.min(window.scrollY, 700) * -0.07}px)`;
-      });
+      scrollY = window.scrollY;
+      queue();
+    };
+    const onMove = (e: MouseEvent) => {
+      mx = (e.clientX / window.innerWidth - 0.5) * 16;
+      my = (e.clientY / window.innerHeight - 0.5) * 12;
+      queue();
     };
     window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("mousemove", onMove, { passive: true });
     return () => {
       window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("mousemove", onMove);
       if (frame) cancelAnimationFrame(frame);
     };
   }, []);
+
+  const project = projects[active] ?? projects[0]!;
 
   const anim = (i: number) => ({
     transitionDelay: `${120 + i * 90}ms`,
@@ -35,23 +57,21 @@ export function Hero() {
   });
 
   return (
-    <section id="home" className="relative overflow-hidden pt-36 pb-24 md:pt-48 md:pb-32">
-      <div className="grid-lines pointer-events-none absolute inset-0 opacity-60 [mask-image:radial-gradient(ellipse_at_50%_0%,black,transparent_75%)]" />
+    <section id="home" className="relative overflow-hidden pt-32 pb-24 md:pt-44 md:pb-32">
+      <div className="grid-lines pointer-events-none absolute inset-0 opacity-50 [mask-image:radial-gradient(ellipse_at_50%_0%,black,transparent_75%)]" />
+      <div className="noise pointer-events-none absolute inset-0" />
       <div className="drift-slow pointer-events-none absolute -top-40 left-1/2 h-[520px] w-[820px] -translate-x-1/2 rounded-full bg-primary/12 blur-[130px]" />
 
-      <div className="relative mx-auto grid max-w-[1400px] items-center gap-16 px-6 md:px-10 lg:grid-cols-[1.05fr_1fr] lg:gap-12">
+      <div className="relative mx-auto grid max-w-[1400px] items-center gap-20 px-6 md:px-10 lg:grid-cols-[1.02fr_1fr] lg:gap-14">
         <div>
-          <div
-            className="flex items-center gap-3 transition-all duration-700 ease-out"
-            style={anim(0)}
-          >
+          <div className="flex items-center gap-3 transition-all duration-700 ease-out" style={anim(0)}>
             <span className="h-px w-10 bg-primary" />
             <span className="text-[11px] font-medium tracking-[0.3em] text-muted-foreground uppercase">
               Full-Stack Web Developer
             </span>
           </div>
 
-          <h1 className="font-display mt-8 text-[2.6rem] leading-[1.02] font-bold tracking-tight sm:text-6xl lg:text-[3.9rem]">
+          <h1 className="font-display mt-8 text-[2.55rem] leading-[1.03] font-bold tracking-tight sm:text-6xl lg:text-[3.85rem]">
             {HEADLINE.map((line, i) => (
               <span key={line} className="block overflow-hidden">
                 <span
@@ -72,94 +92,102 @@ export function Hero() {
             className="mt-8 max-w-lg text-base leading-relaxed text-muted-foreground transition-all duration-700 ease-out md:text-lg"
             style={anim(6)}
           >
-            Modern, responsive websites and web applications designed around your business goals.
+            Modern, responsive websites and web applications designed to give your business a
+            stronger online presence and turn visitors into customers.
+          </p>
+
+          <p
+            className="mt-6 font-mono text-[11px] tracking-[0.16em] text-muted-foreground/80 uppercase transition-all duration-700 ease-out"
+            style={anim(7)}
+          >
+            Business Websites • Web Apps • Landing Pages • Custom Web Solutions
           </p>
 
           <div
-            className="mt-10 flex flex-wrap items-center gap-4 transition-all duration-700 ease-out"
-            style={anim(7)}
+            className="mt-9 flex flex-wrap items-center gap-4 transition-all duration-700 ease-out"
+            style={anim(8)}
           >
-            <MagneticButton href="#contact">
+            <MagneticButton href="#start">
               Start a Project
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </MagneticButton>
             <MagneticButton href="#work" variant="ghost">
               View My Work
+              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </MagneticButton>
           </div>
+
+          <p
+            className="mt-7 text-sm text-muted-foreground/90 transition-all duration-700 ease-out"
+            style={anim(9)}
+          >
+            Have a business without a professional website? Let&apos;s change that.
+          </p>
         </div>
 
         <div
-          ref={visualRef}
-          className="relative transition-all duration-1000 ease-out will-change-transform"
+          className="relative transition-all duration-1000 ease-out"
           style={{ transitionDelay: "420ms", opacity: mounted ? 1 : 0 }}
         >
-          <BrowserMock />
-          <PhoneMock />
-        </div>
-      </div>
-    </section>
-  );
-}
+          <div ref={visualRef} className="will-change-transform">
+            <div className="mb-5 flex items-baseline gap-3">
+              <span className="font-mono text-[10px] tracking-[0.28em] text-primary uppercase">
+                Selected Work
+              </span>
+              <span className="h-px flex-1 bg-border" />
+            </div>
 
-function BrowserMock() {
-  return (
-    <div className="float-slow hairline relative overflow-hidden rounded-xl bg-surface/80 shadow-[0_40px_120px_-40px_rgba(0,0,0,0.9)]">
-      <div className="flex items-center gap-2 border-b border-border px-4 py-3">
-        <span className="h-2.5 w-2.5 rounded-full bg-muted-foreground/30" />
-        <span className="h-2.5 w-2.5 rounded-full bg-muted-foreground/20" />
-        <span className="h-2.5 w-2.5 rounded-full bg-muted-foreground/15" />
-        <span className="ml-3 rounded-full bg-background/70 px-3 py-1 font-mono text-[10px] text-muted-foreground">
-          ismaildigital.site
-        </span>
-      </div>
-      <div className="space-y-5 p-6">
-        <div className="flex items-center justify-between">
-          <div className="h-2 w-16 rounded-full bg-foreground/70" />
-          <div className="flex gap-2">
-            <div className="h-1.5 w-8 rounded-full bg-foreground/15" />
-            <div className="h-1.5 w-8 rounded-full bg-foreground/15" />
-            <div className="h-1.5 w-8 rounded-full bg-foreground/15" />
+            <Link
+              to="/work/$slug"
+              params={{ slug: project.slug }}
+              className="group block focus-ring rounded-xl"
+              aria-label={`Open the ${project.name} case study`}
+            >
+              <DeviceShowcase
+                eager
+                name={project.name}
+                desktopSrc={project.heroImage}
+                mobileSrc={project.mobileImage}
+                className="float-slow"
+              />
+            </Link>
+
+            <div className="mt-14 flex flex-wrap items-end justify-between gap-6 sm:mt-12">
+              <div>
+                <h2 className="font-display text-lg font-semibold tracking-tight">{project.name}</h2>
+                <p className="mt-1 text-xs text-muted-foreground">{project.category}</p>
+              </div>
+              <div className="flex gap-2" role="tablist" aria-label="Featured project">
+                {projects.map((p, i) => (
+                  <button
+                    key={p.id}
+                    type="button"
+                    role="tab"
+                    aria-selected={i === active}
+                    aria-label={`Show ${p.name}`}
+                    onClick={() => setActive(i)}
+                    onMouseEnter={() => setActive(i)}
+                    className={cn(
+                      "focus-ring rounded-full px-3 py-1.5 font-mono text-[10px] tracking-widest transition-all duration-300",
+                      i === active
+                        ? "bg-primary text-primary-foreground"
+                        : "hairline text-muted-foreground hover:text-foreground",
+                    )}
+                  >
+                    {p.index}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
-        <div className="space-y-2.5 pt-4">
-          <div className="h-4 w-4/5 rounded bg-foreground/80" />
-          <div className="h-4 w-3/5 rounded bg-foreground/40" />
-          <div className="h-2 w-2/3 rounded bg-foreground/15" />
-        </div>
-        <div className="flex gap-3 pt-1">
-          <div className="h-7 w-24 rounded-full bg-primary" />
-          <div className="hairline h-7 w-20 rounded-full" />
-        </div>
-        <div className="grid grid-cols-3 gap-3 pt-5">
-          {[0, 1, 2].map((i) => (
-            <div key={i} className="hairline space-y-2 rounded-lg bg-background/50 p-3">
-              <div className="h-1.5 w-6 rounded-full bg-primary/70" />
-              <div className="h-1.5 w-full rounded-full bg-foreground/12" />
-              <div className="h-1.5 w-2/3 rounded-full bg-foreground/12" />
-            </div>
-          ))}
-        </div>
       </div>
-    </div>
-  );
-}
 
-function PhoneMock() {
-  return (
-    <div
-      className="float-slow hairline absolute -bottom-12 -left-10 hidden w-[132px] overflow-hidden rounded-[1.4rem] bg-surface-2 p-2 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.9)] sm:block"
-      style={{ animationDelay: "1.2s" }}
-    >
-      <div className="hairline space-y-3 rounded-[1rem] bg-background p-3">
-        <div className="mx-auto h-1 w-8 rounded-full bg-foreground/20" />
-        <div className="h-2 w-3/4 rounded bg-foreground/70" />
-        <div className="h-1.5 w-full rounded bg-foreground/15" />
-        <div className="h-1.5 w-2/3 rounded bg-foreground/15" />
-        <div className="h-5 w-16 rounded-full bg-primary" />
-        <div className="hairline h-10 rounded-md bg-surface/60" />
-        <div className="hairline h-10 rounded-md bg-surface/60" />
+      <div className="relative mx-auto mt-20 hidden max-w-[1400px] px-6 md:block md:px-10">
+        <span className="inline-flex items-center gap-2 text-[10px] tracking-[0.28em] text-muted-foreground uppercase">
+          <ArrowDown className="h-3.5 w-3.5 animate-bounce" /> Scroll
+        </span>
       </div>
-    </div>
+    </section>
   );
 }
