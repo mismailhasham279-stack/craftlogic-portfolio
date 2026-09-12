@@ -5,17 +5,22 @@ import {
   Trust,
   Services,
   Work,
+  BusinessProblem,
   FreeDemo,
+  StartProject,
   Process,
   WhyMe,
   About,
+  Contact,
   FinalCta,
   Footer,
 } from "@/components/site/Sections";
+import { EMAIL, projects } from "@/data/projects";
 
-const TITLE = "M. Ismail | Full-Stack Web Developer";
+const SITE = "https://ismail-digital-crafted.lovable.app";
+const TITLE = "M. Ismail — Full-Stack Web Developer for Business Websites";
 const DESCRIPTION =
-  "Modern, responsive websites and web applications for businesses, startups and entrepreneurs.";
+  "Full-Stack Web Developer building modern, responsive websites and web applications for businesses, startups and entrepreneurs.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -25,10 +30,12 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/" },
+      { property: "og:url", content: SITE },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:image", content: projects[0]!.heroImage },
+      { name: "twitter:image", content: projects[0]!.heroImage },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: SITE }],
     scripts: [
       {
         type: "application/ld+json",
@@ -37,8 +44,14 @@ export const Route = createFileRoute("/")({
           "@type": "Person",
           name: "M. Ismail",
           jobTitle: "Full-Stack Web Developer",
-          email: "mailto:mismailhasham279@gmail.com",
-          url: "https://ismaildigital.site",
+          email: `mailto:${EMAIL}`,
+          url: SITE,
+          knowsAbout: [
+            "Web Development",
+            "Business Websites",
+            "E-Commerce Websites",
+            "Web Applications",
+          ],
         }),
       },
     ],
@@ -55,10 +68,13 @@ function Index() {
         <Trust />
         <Services />
         <Work />
+        <BusinessProblem />
         <FreeDemo />
         <Process />
         <WhyMe />
         <About />
+        <StartProject />
+        <Contact />
         <FinalCta />
       </main>
       <Footer />
