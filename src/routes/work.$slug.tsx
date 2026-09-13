@@ -13,12 +13,13 @@ const SITE = "https://ismail-digital-crafted.lovable.app";
 
 export const Route = createFileRoute("/work/$slug")({
   loader: ({ params }) => {
-    const project = getProject(params.slug);
-    if (!project) throw notFound();
-    return { project };
+    // Only serialisable data may cross the server/client boundary, so the
+    // project object itself is looked up again in the component.
+    if (!getProject(params.slug)) throw notFound();
+    return { slug: params.slug };
   },
   head: ({ params, loaderData }) => {
-    const p = loaderData?.project;
+    const p = loaderData ? getProject(loaderData.slug) : undefined;
     const url = `${SITE}/work/${params.slug}`;
     if (!p) {
       return {
@@ -59,7 +60,8 @@ export const Route = createFileRoute("/work/$slug")({
 });
 
 function CaseStudy() {
-  const { project } = Route.useLoaderData();
+  const { slug } = Route.useLoaderData();
+  const project = getProject(slug)!;
   const i = projects.findIndex((p) => p.slug === project.slug);
   const next = projects[(i + 1) % projects.length]!;
 
