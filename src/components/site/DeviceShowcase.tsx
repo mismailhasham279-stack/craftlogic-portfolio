@@ -35,7 +35,7 @@ export function DeviceShowcase({ desktopSrc, mobileSrc, name, className, eager }
       </div>
 
       <div
-        className="hairline absolute -bottom-10 -left-6 hidden w-[124px] overflow-hidden rounded-[1.3rem] bg-surface-2 p-1.5 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.9)] sm:block md:-left-10 md:w-[142px]"
+        className="hairline absolute -bottom-12 -left-8 hidden w-[118px] overflow-hidden rounded-[1.3rem] bg-surface-2 p-1.5 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.9)] sm:block md:-left-16 md:w-[136px]"
         aria-hidden={false}
       >
         <div className="overflow-hidden rounded-[1rem] bg-background">
