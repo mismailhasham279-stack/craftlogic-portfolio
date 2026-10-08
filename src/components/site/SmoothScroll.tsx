@@ -67,8 +67,14 @@ export function SmoothScroll() {
       }
       const target = document.getElementById(id);
       if (!target) return;
-      if (lenis) lenis.scrollTo(target, { offset: -80 });
-      else target.scrollIntoView({ behavior: "smooth" });
+      if (lenis) {
+        lenis.scrollTo(target, { offset: -80 });
+      } else {
+        const behavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          ? "auto"
+          : "smooth";
+        target.scrollIntoView({ behavior });
+      }
     };
 
     const t = window.setTimeout(run, 60);

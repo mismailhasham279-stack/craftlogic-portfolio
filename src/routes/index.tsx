@@ -15,12 +15,13 @@ import {
   FinalCta,
   Footer,
 } from "@/components/site/Sections";
-import { EMAIL, projects } from "@/data/projects";
+import { EMAIL } from "@/data/projects";
+import { SITE_NAME, SITE_ORIGIN, SITE_URL } from "@/lib/site";
 
-const SITE = "https://ismail-digital-crafted.lovable.app";
-const TITLE = "M. Ismail — Full-Stack Web Developer for Business Websites";
+const SITE = SITE_ORIGIN;
+const TITLE = "CRAFTLOGIC — Full-Stack Web Development & Digital Agency";
 const DESCRIPTION =
-  "Full-Stack Web Developer building modern, responsive websites and web applications for businesses, startups and entrepreneurs.";
+  "CRAFTLOGIC designs and builds high-performance custom websites, e-commerce platforms, and digital experiences tailored for ambitious businesses.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -30,27 +31,76 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: SITE },
+      { property: "og:url", content: SITE_URL },
+      { property: "og:site_name", content: SITE_NAME },
+      { property: "og:image", content: `${SITE}/og-preview.png` },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:type", content: "image/png" },
+      {
+        property: "og:image:alt",
+        content: "CRAFTLOGIC — Full-Stack Web Development & Digital Agency",
+      },
       { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:image", content: projects[0]!.heroImage },
-      { name: "twitter:image", content: projects[0]!.heroImage },
+      { name: "twitter:title", content: TITLE },
+      { name: "twitter:description", content: DESCRIPTION },
+      { name: "twitter:image", content: `${SITE}/og-preview.png` },
+      {
+        name: "twitter:image:alt",
+        content: "CRAFTLOGIC — Full-Stack Web Development & Digital Agency",
+      },
     ],
-    links: [{ rel: "canonical", href: SITE }],
+    links: [{ rel: "canonical", href: SITE_URL }],
     scripts: [
       {
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "Person",
-          name: "M. Ismail",
-          jobTitle: "Full-Stack Web Developer",
-          email: `mailto:${EMAIL}`,
-          url: SITE,
-          knowsAbout: [
-            "Web Development",
-            "Business Websites",
-            "E-Commerce Websites",
-            "Web Applications",
+          "@graph": [
+            {
+              "@type": "Organization",
+              "@id": `${SITE}/#organization`,
+              name: SITE_NAME,
+              url: SITE_URL,
+              email: EMAIL,
+              telephone: "+92 334 4957382",
+              logo: `${SITE}/logo.png`,
+              description: "Full-Stack Web Development Agency",
+              knowsAbout: [
+                "Business Websites",
+                "Landing Pages",
+                "Web Applications",
+                "E-Commerce Development",
+                "Website Redesign",
+                "Custom Solutions",
+              ],
+            },
+            {
+              "@type": "ProfessionalService",
+              "@id": `${SITE}/#professional-service`,
+              name: SITE_NAME,
+              url: SITE_URL,
+              description: "Full-Stack Web Development Agency",
+              email: EMAIL,
+              telephone: "+92 334 4957382",
+              priceRange: "$$",
+              parentOrganization: { "@id": `${SITE}/#organization` },
+              hasOfferCatalog: {
+                "@type": "OfferCatalog",
+                name: "Web Development Services",
+                itemListElement: [
+                  "Business Websites",
+                  "Landing Pages",
+                  "Web Applications",
+                  "E-Commerce Development",
+                  "Website Redesign",
+                  "Custom Solutions",
+                ].map((name) => ({
+                  "@type": "Offer",
+                  itemOffered: { "@type": "Service", name },
+                })),
+              },
+            },
           ],
         }),
       },

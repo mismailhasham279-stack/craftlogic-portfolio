@@ -16,25 +16,40 @@ import {
   BookOpen,
 } from "lucide-react";
 
-import luxeviaDesktop from "@/assets/projects/luxevia-desktop.jpg.asset.json";
-import luxeviaDesktop2 from "@/assets/projects/luxevia-desktop-2.jpg.asset.json";
-import luxeviaMobile from "@/assets/projects/luxevia-mobile.jpg.asset.json";
-import luxeviaMobile2 from "@/assets/projects/luxevia-mobile-2.jpg.asset.json";
-import usaluxeDesktop from "@/assets/projects/usaluxe-desktop.jpg.asset.json";
-import usaluxeDesktop2 from "@/assets/projects/usaluxe-desktop-2.jpg.asset.json";
-import usaluxeMobile from "@/assets/projects/usaluxe-mobile.jpg.asset.json";
-import usaluxeMobile2 from "@/assets/projects/usaluxe-mobile-2.jpg.asset.json";
-import graceDesktop from "@/assets/projects/nailsbygrace-desktop.jpg.asset.json";
-import graceDesktop2 from "@/assets/projects/nailsbygrace-desktop-2.jpg.asset.json";
-import graceMobile from "@/assets/projects/nailsbygrace-mobile.jpg.asset.json";
-import graceMobile2 from "@/assets/projects/nailsbygrace-mobile-2.jpg.asset.json";
-import shoptopDesktop from "@/assets/projects/shoptop-desktop.jpg.asset.json";
-import shoptopDesktop2 from "@/assets/projects/shoptop-desktop-2.jpg.asset.json";
-import shoptopMobile from "@/assets/projects/shoptop-mobile.jpg.asset.json";
-import shoptopMobile2 from "@/assets/projects/shoptop-mobile-2.jpg.asset.json";
+export const PROJECT_ASSETS = {
+  luxevia: {
+    thumbnail: "/images/projects/luxevia/thumbnail.webp",
+    desktop: "/images/projects/luxevia/desktop.webp",
+    mobile: "/images/projects/luxevia/mobile.webp",
+  },
+  usaLuxe: {
+    thumbnail: "/images/projects/usa-luxe/thumbnail.webp",
+    desktop: "/images/projects/usa-luxe/desktop.webp",
+    mobile: "/images/projects/usa-luxe/mobile.webp",
+  },
+  nailsByGrace: {
+    thumbnail: "/images/projects/nailsbygrace/thumbnail.webp",
+    desktop: "/images/projects/nailsbygrace/desktop.webp",
+    mobile: "/images/projects/nailsbygrace/mobile.webp",
+  },
+  shopTop: {
+    thumbnail: "/images/projects/shoptop/thumbnail.webp",
+    desktop: "/images/projects/shoptop/desktop.webp",
+    mobile: "/images/projects/shoptop/mobile.webp",
+  },
+} as const;
+
+const PROJECT_PREVIEWS = {
+  luxevia: null,
+  haider: "/project-previews/haider-stillbok.svg",
+  aurevane: "/project-previews/aurevane.svg",
+  usaLuxe: null,
+  nailsByGrace: null,
+  shopTop: null,
+} as const;
 
 export type GalleryImage = {
-  src: string;
+  src: string | null;
   alt: string;
   caption: string;
   device: "desktop" | "mobile";
@@ -60,9 +75,9 @@ export type Project = {
   solution: string;
   businessValue: string[];
   liveUrl: string;
-  thumbnail: string;
-  heroImage: string;
-  mobileImage: string;
+  thumbnail: string | null;
+  heroImage: string | null;
+  mobileImage: string | null;
   gallery: GalleryImage[];
   features: { icon: LucideIcon; title: string; copy: string }[];
   technologies: string[];
@@ -78,9 +93,9 @@ export const projects: Project[] = [
     slug: "luxevia-purse",
     index: "01",
     name: "Luxevia Purse",
-    category: "Luxury E-Commerce / Fashion",
+    category: "E-Commerce Website",
     description:
-      "A premium digital shopping experience created around luxury fashion, curated products and refined editorial presentation.",
+      "A luxury purse storefront with a sample catalogue; the live site identifies product details as illustrative.",
     businessChallenge:
       "A luxury fashion catalogue needs more than a product list. Handbags, watches, footwear and accessories have to be presented with the same care as the products themselves, so that browsing feels considered rather than transactional and customers can move from discovery to purchase without losing the sense of a premium brand.",
     solution:
@@ -94,30 +109,30 @@ export const projects: Project[] = [
       "Keeps the full experience intact on mobile, tablet and desktop.",
     ],
     liveUrl: "https://luxevia-edit-m964.vercel.app/",
-    thumbnail: luxeviaDesktop.url,
-    heroImage: luxeviaDesktop.url,
-    mobileImage: luxeviaMobile.url,
+    thumbnail: PROJECT_PREVIEWS.luxevia,
+    heroImage: null,
+    mobileImage: null,
     gallery: [
       {
-        src: luxeviaDesktop.url,
+        src: PROJECT_PREVIEWS.luxevia,
         alt: "Luxevia Purse homepage hero on desktop",
         caption: "Editorial hero",
         device: "desktop",
       },
       {
-        src: luxeviaDesktop2.url,
+        src: PROJECT_PREVIEWS.luxevia,
         alt: "Luxevia Purse product discovery section on desktop",
         caption: "Curated product discovery",
         device: "desktop",
       },
       {
-        src: luxeviaMobile.url,
+        src: PROJECT_PREVIEWS.luxevia,
         alt: "Luxevia Purse homepage on a mobile device",
         caption: "Mobile hero",
         device: "mobile",
       },
       {
-        src: luxeviaMobile2.url,
+        src: PROJECT_PREVIEWS.luxevia,
         alt: "Luxevia Purse product listing on a mobile device",
         caption: "Mobile product cards",
         device: "mobile",
@@ -125,34 +140,9 @@ export const projects: Project[] = [
     ],
     features: [
       {
-        icon: BookOpen,
-        title: "Editorial Hero",
-        copy: "A magazine-style opening that sets the tone of the collection.",
-      },
-      {
-        icon: Search,
-        title: "Curated Discovery",
-        copy: "Handbags, watches, footwear and accessories organised for browsing.",
-      },
-      {
         icon: ShoppingBag,
-        title: "Product Cards & Pricing",
-        copy: "Clear product imagery with pricing and quick-view interactions.",
-      },
-      {
-        icon: Sparkles,
-        title: "Craftsmanship Story",
-        copy: "Storytelling around craftsmanship and the unboxing experience.",
-      },
-      {
-        icon: MessageCircle,
-        title: "Private Concierge",
-        copy: "A direct route for customers who want personal assistance.",
-      },
-      {
-        icon: HelpCircle,
-        title: "FAQ",
-        copy: "Practical answers presented without breaking the editorial tone.",
+        title: "Sample Catalogue",
+        copy: "The live site identifies its product details as illustrative.",
       },
     ],
     technologies: ["React", "Tailwind CSS", "TypeScript"],
@@ -212,13 +202,275 @@ export const projects: Project[] = [
     ],
   },
   {
+    id: "haider-stillbok",
+    slug: "haider-stillbok-premium",
+    index: "02",
+    name: "Haider Stillbok Premium",
+    category: "Commercial Tech Catalog",
+    description:
+      "A premium laptop catalog for business users, creators and professionals, presenting imported HP and Dell laptops with clear specifications, condition details and direct WhatsApp ordering.",
+    businessChallenge:
+      "Laptop buyers need to compare processor, memory, storage, display and condition before they can make a confident choice. A broad catalog can feel difficult to navigate when product details, pricing and availability are spread across separate listings or conversations.",
+    solution:
+      "The site groups business laptops, EliteBooks, workstations and convertibles into clear collections, then presents selected listings with their key specifications, condition notes and pricing. Product discovery is paired with direct WhatsApp contact, while delivery, ordering steps and frequently asked questions explain what to expect before a customer gets in touch.",
+    businessValue: [
+      "Organises business laptops, workstations and convertibles into distinct collections.",
+      "Makes key specifications easier to scan and compare across listings.",
+      "Displays condition and pricing details alongside each laptop.",
+      "Provides a direct WhatsApp path for availability and ordering questions.",
+      "Explains ordering, delivery and common pre-purchase questions.",
+      "Serves professional buyers across desktop and mobile browsing.",
+    ],
+    liveUrl: "https://haider-stillbok-premium.vercel.app/",
+    thumbnail: PROJECT_PREVIEWS.haider,
+    heroImage: PROJECT_PREVIEWS.haider,
+    mobileImage: PROJECT_PREVIEWS.haider,
+    gallery: [
+      {
+        src: PROJECT_PREVIEWS.haider,
+        alt: "Premium business laptop shown on a dark studio background",
+        caption: "Premium laptop hero",
+        device: "desktop",
+      },
+      {
+        src: PROJECT_PREVIEWS.haider,
+        alt: "Business laptop collection",
+        caption: "Business laptops",
+        device: "desktop",
+      },
+      {
+        src: PROJECT_PREVIEWS.haider,
+        alt: "Professional mobile workstation",
+        caption: "Workstations",
+        device: "desktop",
+      },
+      {
+        src: PROJECT_PREVIEWS.haider,
+        alt: "Convertible business laptop",
+        caption: "x360 convertibles",
+        device: "mobile",
+      },
+    ],
+    features: [
+      {
+        icon: Layout,
+        title: "Product Collections",
+        copy: "Business laptops, EliteBooks, workstations, convertibles and other focused collections.",
+      },
+      {
+        icon: Search,
+        title: "Specification-Led Browsing",
+        copy: "Processor, memory, storage and display details help customers compare listings.",
+      },
+      {
+        icon: Tag,
+        title: "Clear Listing Details",
+        copy: "Pricing, condition and charger notes appear with the product information.",
+      },
+      {
+        icon: MessageCircle,
+        title: "WhatsApp Ordering",
+        copy: "Direct contact gives customers a route to ask questions and confirm availability.",
+      },
+      {
+        icon: Truck,
+        title: "Delivery Information",
+        copy: "Delivery details and nationwide service information support purchase planning.",
+      },
+      {
+        icon: HelpCircle,
+        title: "Ordering Guidance",
+        copy: "A three-step ordering outline and FAQ cover common pre-purchase questions.",
+      },
+    ],
+    technologies: ["React", "Tailwind CSS", "TypeScript"],
+    projectType: "Commercial Technology Catalog",
+    services: ["UI Design", "Front-End Development", "Product Catalog"],
+    status: "live",
+    anatomy: [
+      {
+        id: "hero",
+        label: "Product Hero",
+        copy: "The opening introduces premium imported laptops and directs visitors to browse or ask a question.",
+        view: "desktop",
+        rect: { top: 8, left: 5, width: 90, height: 55 },
+      },
+      {
+        id: "collections",
+        label: "Collections",
+        copy: "Dedicated categories help visitors browse by laptop type and work requirement.",
+        view: "desktop2",
+        rect: { top: 8, left: 5, width: 90, height: 55 },
+      },
+      {
+        id: "listings",
+        label: "Laptop Listings",
+        copy: "Product cards present model names, specifications, condition and pricing together.",
+        view: "desktop",
+        rect: { top: 14, left: 5, width: 90, height: 65 },
+      },
+      {
+        id: "ordering",
+        label: "Ordering",
+        copy: "WhatsApp actions connect product research to a direct conversation with the business.",
+        view: "desktop2",
+        rect: { top: 20, left: 5, width: 90, height: 60 },
+      },
+      {
+        id: "delivery",
+        label: "Delivery Details",
+        copy: "Delivery information and order guidance answer practical questions before purchase.",
+        view: "desktop",
+        rect: { top: 30, left: 5, width: 90, height: 55 },
+      },
+      {
+        id: "mobile",
+        label: "Mobile Product",
+        copy: "The laptop catalog is available to customers browsing on mobile devices.",
+        view: "mobile",
+        rect: { top: 8, left: 5, width: 90, height: 75 },
+      },
+    ],
+  },
+  {
+    id: "aurevane",
+    slug: "aurevane",
+    index: "03",
+    name: "Aurevane",
+    category: "Luxury Brand Showcase",
+    description:
+      "A considered designer-luxury storefront presenting handbags, timepieces, footwear, apparel and accessories through an editorial collection and private concierge experience.",
+    businessChallenge:
+      "A multi-category luxury collection needs a consistent point of view without making browsing feel like an ordinary product list. Customers also need practical guidance on availability, sizing, delivery and ordering while retaining the sense of a personal, premium service.",
+    solution:
+      "The experience introduces the seasonal edit with an editorial hero and a clear brand philosophy, then organizes the collection by category. Product details, craftsmanship storytelling and gift presentation support discovery, while concierge guidance and client-service information give customers a direct route to ask about availability, fit and orders.",
+    businessValue: [
+      "Presents a coherent luxury identity across several product categories.",
+      "Lets customers explore handbags, watches, footwear, apparel and accessories.",
+      "Uses craftsmanship and product storytelling to add context to the collection.",
+      "Connects product discovery with a private concierge experience.",
+      "Surfaces shipping, payment and client-service information for purchase confidence.",
+      "Maintains an editorial presentation from collection discovery to product detail.",
+    ],
+    liveUrl: "https://aurevane-edit.vercel.app/",
+    thumbnail: PROJECT_PREVIEWS.aurevane,
+    heroImage: PROJECT_PREVIEWS.aurevane,
+    mobileImage: PROJECT_PREVIEWS.aurevane,
+    gallery: [
+      {
+        src: PROJECT_PREVIEWS.aurevane,
+        alt: "Structured tan leather satchel from the AUREVANE edit",
+        caption: "Seasonal edit",
+        device: "desktop",
+      },
+      {
+        src: PROJECT_PREVIEWS.aurevane,
+        alt: "Gold-tone skeleton automatic timepiece on black silk",
+        caption: "Timepieces",
+        device: "desktop",
+      },
+      {
+        src: PROJECT_PREVIEWS.aurevane,
+        alt: "Macro detail of leather grain, stitching and a gold-tone ring",
+        caption: "Craftsmanship detail",
+        device: "desktop",
+      },
+      {
+        src: PROJECT_PREVIEWS.aurevane,
+        alt: "Vesper patent pump from the AUREVANE collection",
+        caption: "Footwear",
+        device: "mobile",
+      },
+    ],
+    features: [
+      {
+        icon: BookOpen,
+        title: "Editorial Brand Story",
+        copy: "A seasonal introduction and brand philosophy establish the collection's point of view.",
+      },
+      {
+        icon: ShoppingBag,
+        title: "Curated Collection",
+        copy: "Handbags, timepieces, footwear, apparel and accessories are organized for discovery.",
+      },
+      {
+        icon: Sparkles,
+        title: "Craftsmanship Details",
+        copy: "Material, construction and finishing receive dedicated editorial attention.",
+      },
+      {
+        icon: Images,
+        title: "Product Presentation",
+        copy: "Featured edits and collection browsing keep product discovery visual and considered.",
+      },
+      {
+        icon: MessageCircle,
+        title: "Private Concierge",
+        copy: "Customers can ask about availability, sizing, product details and order assistance.",
+      },
+      {
+        icon: HelpCircle,
+        title: "Client Services",
+        copy: "Shipping, payment and frequently asked questions support informed decisions.",
+      },
+    ],
+    technologies: ["React", "Tailwind CSS", "TypeScript"],
+    projectType: "Luxury E-Commerce / Brand Showcase",
+    services: ["UI Design", "Front-End Development", "E-Commerce Experience"],
+    status: "live",
+    anatomy: [
+      {
+        id: "hero",
+        label: "Seasonal Edit",
+        copy: "The opening introduces the current edit and guides visitors toward collection discovery.",
+        view: "desktop",
+        rect: { top: 8, left: 5, width: 90, height: 55 },
+      },
+      {
+        id: "philosophy",
+        label: "Brand Philosophy",
+        copy: "The brand story frames the selection around proportion, material and lasting use.",
+        view: "desktop2",
+        rect: { top: 8, left: 5, width: 90, height: 55 },
+      },
+      {
+        id: "collection",
+        label: "Collection",
+        copy: "Product categories organize handbags, timepieces, footwear, apparel and accessories.",
+        view: "desktop",
+        rect: { top: 14, left: 5, width: 90, height: 65 },
+      },
+      {
+        id: "craftsmanship",
+        label: "Craftsmanship",
+        copy: "Material and finishing details add context to the product presentation.",
+        view: "desktop2",
+        rect: { top: 20, left: 5, width: 90, height: 60 },
+      },
+      {
+        id: "concierge",
+        label: "Private Concierge",
+        copy: "Personal assistance connects product interest to availability and order guidance.",
+        view: "desktop",
+        rect: { top: 30, left: 5, width: 90, height: 55 },
+      },
+      {
+        id: "mobile",
+        label: "Mobile Collection",
+        copy: "Collection discovery and concierge information adapt to mobile browsing.",
+        view: "mobile",
+        rect: { top: 8, left: 5, width: 90, height: 75 },
+      },
+    ],
+  },
+  {
     id: "usaluxe",
     slug: "usa-luxe-import",
-    index: "02",
+    index: "04",
     name: "USA Luxe Import",
-    category: "International Commerce / Product Curation",
+    category: "Business Website",
     description:
-      "A business-focused digital experience designed to connect customers with curated products sourced from the United States.",
+      "A business page directing visitors to Instagram for new arrivals, products and launches.",
     businessChallenge:
       "An import and sourcing business has two very different types of customer: people who want something that is ready to ship, and people who want a specific item sourced for them. Both need to understand what is available, how the process works and how to start a conversation quickly.",
     solution:
@@ -232,30 +484,30 @@ export const projects: Project[] = [
       "Works comfortably on the phones most customers browse from.",
     ],
     liveUrl: "https://usa-luxe-curated.vercel.app/",
-    thumbnail: usaluxeDesktop.url,
-    heroImage: usaluxeDesktop.url,
-    mobileImage: usaluxeMobile.url,
+    thumbnail: PROJECT_PREVIEWS.usaLuxe,
+    heroImage: null,
+    mobileImage: null,
     gallery: [
       {
-        src: usaluxeDesktop.url,
+        src: PROJECT_PREVIEWS.usaLuxe,
         alt: "USA Luxe Import homepage on desktop",
         caption: "Homepage",
         device: "desktop",
       },
       {
-        src: usaluxeDesktop2.url,
+        src: PROJECT_PREVIEWS.usaLuxe,
         alt: "USA Luxe Import product collection on desktop",
         caption: "Product catalogue",
         device: "desktop",
       },
       {
-        src: usaluxeMobile.url,
+        src: PROJECT_PREVIEWS.usaLuxe,
         alt: "USA Luxe Import homepage on a mobile device",
         caption: "Mobile homepage",
         device: "mobile",
       },
       {
-        src: usaluxeMobile2.url,
+        src: PROJECT_PREVIEWS.usaLuxe,
         alt: "USA Luxe Import products on a mobile device",
         caption: "Mobile catalogue",
         device: "mobile",
@@ -263,34 +515,9 @@ export const projects: Project[] = [
     ],
     features: [
       {
-        icon: Layout,
-        title: "Collection",
-        copy: "A curated collection view introducing what the business sources.",
-      },
-      {
-        icon: ShoppingBag,
-        title: "Product Catalogue",
-        copy: "Product details, imagery and pricing in one consistent system.",
-      },
-      {
         icon: MessageCircle,
-        title: "WhatsApp Enquiry",
-        copy: "Direct enquiry so interest becomes a conversation immediately.",
-      },
-      {
-        icon: Search,
-        title: "Custom Sourcing",
-        copy: "A request flow for items that are not in the ready-to-ship range.",
-      },
-      {
-        icon: Truck,
-        title: "Delivery Information",
-        copy: "Delivery and service information presented without ambiguity.",
-      },
-      {
-        icon: HelpCircle,
-        title: "Process & FAQ",
-        copy: "A step-by-step explanation of how ordering works, plus an FAQ.",
+        title: "Instagram Updates",
+        copy: "The live page points visitors to Instagram for new arrivals, products and launches.",
       },
     ],
     technologies: ["React", "Tailwind CSS", "TypeScript"],
@@ -352,11 +579,10 @@ export const projects: Project[] = [
   {
     id: "nailsbygrace",
     slug: "nailsbygrace",
-    index: "03",
+    index: "05",
     name: "NailsByGrace",
-    category: "Local Service Business / Beauty",
-    description:
-      "A professional service-business website designed to present nail services, pricing, portfolio work and appointment requests in a clear and polished digital experience.",
+    category: "Beauty Service Website",
+    description: "A clear introduction to Gel-X, nail art and custom nail sets.",
     businessChallenge:
       "A local service business is usually judged on two things online: whether the work looks good, and how easy it is to book. Service details, pricing and availability often live in messages and social posts, which makes it hard for a new client to understand the offer and take the next step.",
     solution:
@@ -370,30 +596,30 @@ export const projects: Project[] = [
       "Gives a local business a professional presence beyond social profiles.",
     ],
     liveUrl: "https://grace-nails-studio.vercel.app/",
-    thumbnail: graceDesktop.url,
-    heroImage: graceDesktop.url,
-    mobileImage: graceMobile.url,
+    thumbnail: PROJECT_PREVIEWS.nailsByGrace,
+    heroImage: null,
+    mobileImage: null,
     gallery: [
       {
-        src: graceDesktop.url,
+        src: PROJECT_PREVIEWS.nailsByGrace,
         alt: "NailsByGrace homepage on desktop",
         caption: "Homepage",
         device: "desktop",
       },
       {
-        src: graceDesktop2.url,
+        src: PROJECT_PREVIEWS.nailsByGrace,
         alt: "NailsByGrace services and pricing on desktop",
         caption: "Services and pricing",
         device: "desktop",
       },
       {
-        src: graceMobile.url,
+        src: PROJECT_PREVIEWS.nailsByGrace,
         alt: "NailsByGrace homepage on a mobile device",
         caption: "Mobile homepage",
         device: "mobile",
       },
       {
-        src: graceMobile2.url,
+        src: PROJECT_PREVIEWS.nailsByGrace,
         alt: "NailsByGrace services on a mobile device",
         caption: "Mobile services",
         device: "mobile",
@@ -402,33 +628,18 @@ export const projects: Project[] = [
     features: [
       {
         icon: Sparkles,
-        title: "Service Presentation",
-        copy: "Gel-X full sets, custom nail art, add-ons and removal services.",
+        title: "Gel-X",
+        copy: "Listed among the services on the live site.",
       },
       {
-        icon: Tag,
-        title: "Service Pricing",
-        copy: "Transparent pricing so clients know what to expect.",
+        icon: Sparkles,
+        title: "Nail Art",
+        copy: "Listed among the services on the live site.",
       },
       {
-        icon: Images,
-        title: "Portfolio Gallery",
-        copy: "Real portfolio images that demonstrate the quality of the work.",
-      },
-      {
-        icon: CalendarCheck,
-        title: "Appointment Requests",
-        copy: "Date, time, service, nail length, nail art and inspiration notes.",
-      },
-      {
-        icon: ClipboardList,
-        title: "Appointment Workflow",
-        copy: "A structured flow that arrives ready to confirm.",
-      },
-      {
-        icon: HelpCircle,
-        title: "Location & FAQ",
-        copy: "Location information and answers to recurring questions.",
+        icon: Sparkles,
+        title: "Custom Sets",
+        copy: "Listed among the services on the live site.",
       },
     ],
     technologies: ["React", "Tailwind CSS", "TypeScript"],
@@ -490,7 +701,7 @@ export const projects: Project[] = [
   {
     id: "shoptop",
     slug: "shoptop",
-    index: "04",
+    index: "06",
     name: "ShopTop",
     category: "Fashion / Pre-Order Commerce",
     description:
@@ -508,30 +719,30 @@ export const projects: Project[] = [
       "Keeps the editorial presentation intact across devices.",
     ],
     liveUrl: "https://curated-streetwear-showcase.vercel.app/",
-    thumbnail: shoptopDesktop.url,
-    heroImage: shoptopDesktop.url,
-    mobileImage: shoptopMobile.url,
+    thumbnail: PROJECT_PREVIEWS.shopTop,
+    heroImage: null,
+    mobileImage: null,
     gallery: [
       {
-        src: shoptopDesktop.url,
+        src: PROJECT_PREVIEWS.shopTop,
         alt: "ShopTop homepage on desktop",
         caption: "Editorial hero",
         device: "desktop",
       },
       {
-        src: shoptopDesktop2.url,
+        src: PROJECT_PREVIEWS.shopTop,
         alt: "ShopTop drop index on desktop",
         caption: "Drop index",
         device: "desktop",
       },
       {
-        src: shoptopMobile.url,
+        src: PROJECT_PREVIEWS.shopTop,
         alt: "ShopTop homepage on a mobile device",
         caption: "Mobile hero",
         device: "mobile",
       },
       {
-        src: shoptopMobile2.url,
+        src: PROJECT_PREVIEWS.shopTop,
         alt: "ShopTop products on a mobile device",
         caption: "Mobile drop",
         device: "mobile",
@@ -627,22 +838,18 @@ export const projects: Project[] = [
   },
 ];
 
-export const getProject = (slug: string) => projects.find((p) => p.slug === slug);
+const PUBLIC_PROJECT_IDS = new Set(["luxevia", "usaluxe", "nailsbygrace", "shoptop"]);
 
-/** Reserved slot rendered after the live projects. */
-export const futureProject = {
-  index: "05",
-  name: "Future Project",
-  copy: "Reserved for an upcoming project.",
-};
+export const getProject = (slug: string) =>
+  projects.find((project) => project.slug === slug && PUBLIC_PROJECT_IDS.has(project.id));
 
 /** Enable once genuine client testimonials are available. */
 export const TESTIMONIALS_ENABLED = false;
 export const testimonials: { quote: string; author: string; role: string }[] = [];
 
-export const EMAIL = "mismailhasham279@gmail.com";
+export const EMAIL = "foundercraftlogic@gmail.com";
 
-/** Editable — replace "#" with the real profile URLs. */
+/** Add profile URLs only when the official account links are available. */
 export const SOCIAL = {
   instagram: "#",
   linkedin: "#",

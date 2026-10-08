@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1">
+      <stop stop-color="#32291e"/>
+      <stop offset="1" stop-color="#0c0c0c"/>
+    </linearGradient>
+    <linearGradient id="bag" x2="1" y2="1">
+      <stop stop-color="#cbb28a"/>
+      <stop offset="1" stop-color="#59442d"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="760" fill="url(#bg)"/>
+  <rect x="48" y="42" width="1104" height="676" rx="18" fill="#11100e" stroke="#5a4930"/>
+  <text x="92" y="104" fill="#e9dfcd" font-family="Georgia,serif" font-size="23" letter-spacing="7">LUXEVIA</text>
+  <text x="810" y="101" fill="#a69b88" font-family="Arial,sans-serif" font-size="13" letter-spacing="3">BAGS  ·  JOURNAL  ·  CONCIERGE</text>
+  <path d="M88 132h1024" stroke="#3b3327"/>
+  <text x="96" y="220" fill="#b99a65" font-family="Arial,sans-serif" font-size="14" letter-spacing="5">THE SIGNATURE EDIT</text>
+  <text x="92" y="302" fill="#f4ede1" font-family="Georgia,serif" font-size="64">Made to be</text>
+  <text x="92" y="374" fill="#d1b984" font-family="Georgia,serif" font-size="64" font-style="italic">carried forward.</text>
+  <text x="96" y="424" fill="#a69b88" font-family="Arial,sans-serif" font-size="17">Considered forms. Enduring character.</text>
+  <rect x="96" y="470" width="210" height="54" rx="27" fill="#b99a65"/>
+  <text x="132" y="504" fill="#15120d" font-family="Arial,sans-serif" font-size="13" letter-spacing="2">EXPLORE THE EDIT</text>
+  <rect x="696" y="171" width="350" height="440" rx="170" fill="#1d1913" stroke="#8b7149"/>
+  <path d="M787 349c2-85 57-125 84-125s82 40 84 125l36 32v151H751V381z" fill="url(#bag)" stroke="#d7bf92" stroke-width="3"/>
+  <path d="M825 288c0-65 19-100 46-100s46 35 46 100" fill="none" stroke="#d7bf92" stroke-width="8"/>
+  <path d="M750 382h241M770 451h202" stroke="#e4d0aa" stroke-opacity=".45" stroke-width="2"/>
+  <text x="98" y="660" fill="#857a68" font-family="Arial,sans-serif" font-size="12" letter-spacing="4">01 / LUXURY LEATHER GOODS</text>
+</svg>

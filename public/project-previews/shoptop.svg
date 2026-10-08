@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1">
+      <stop stop-color="#32302b"/>
+      <stop offset="1" stop-color="#10100f"/>
+    </linearGradient>
+    <linearGradient id="coat" x2="1" y2="1">
+      <stop stop-color="#d2c7ad"/>
+      <stop offset="1" stop-color="#777366"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="760" fill="url(#bg)"/>
+  <rect x="48" y="42" width="1104" height="676" rx="18" fill="#151513" stroke="#514936"/>
+  <text x="92" y="105" fill="#eee9dd" font-family="Arial,sans-serif" font-size="22" font-weight="700" letter-spacing="7">SHOPTOP</text>
+  <text x="833" y="103" fill="#aaa79e" font-family="Arial,sans-serif" font-size="12" letter-spacing="3">NEW DROP  ·  SHOP  ·  CONCIERGE</text>
+  <path d="M88 135h1024" stroke="#39372f"/>
+  <text x="96" y="219" fill="#c6a96f" font-family="Arial,sans-serif" font-size="13" letter-spacing="5">DROP 01 / SPRING EDIT</text>
+  <text x="92" y="310" fill="#f0eee7" font-family="Georgia,serif" font-size="67">Find your next</text>
+  <text x="94" y="383" fill="#d0bd98" font-family="Georgia,serif" font-size="67" font-style="italic">favorite.</text>
+  <text x="96" y="430" fill="#aaa79e" font-family="Arial,sans-serif" font-size="16">Curated streetwear, ready for your rotation.</text>
+  <rect x="96" y="474" width="176" height="50" rx="25" fill="#c6a96f"/>
+  <text x="132" y="505" fill="#17150f" font-family="Arial,sans-serif" font-size="12" letter-spacing="2">EXPLORE THE DROP</text>
+  <rect x="706" y="180" width="260" height="420" rx="4" fill="#292722" stroke="#72664d"/>
+  <path d="M787 267l49-21h45l49 21 47 84-45 25-22-34v174H761V342l-22 34-45-25z" fill="url(#coat)" stroke="#e0d4ba" stroke-width="3"/>
+  <path d="M836 246l22 38 23-38M858 284v230M803 367h-24M914 367h-24" fill="none" stroke="#766f5f" stroke-width="3"/>
+  <text x="98" y="658" fill="#938c7d" font-family="Arial,sans-serif" font-size="12" letter-spacing="4">CURATED DROPS  /  QUICK RESERVE  /  DIRECT ENQUIRY</text>
+</svg>

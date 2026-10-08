@@ -2,7 +2,7 @@ import logoAsset from "@/assets/logo.png.asset.json";
 import { cn } from "@/lib/utils";
 
 /**
- * The M. Ismail brand mark. The source artwork is a square logo on a white
+ * The CRAFTLOGIC brand mark. The source artwork is a square logo on a white
  * field, so it is masked into a soft rounded plate to sit on the dark UI.
  */
 export function Logo({ className, size = 40 }: { className?: string; size?: number }) {
@@ -16,11 +16,11 @@ export function Logo({ className, size = 40 }: { className?: string; size?: numb
     >
       <img
         src={logoAsset.url}
-        alt="M. Ismail — Full-Stack Web Developer"
+        alt="CRAFTLOGIC — Full-Stack Web Development Agency"
         width={size}
         height={size}
         className="h-full w-full object-contain p-[3px]"
-        loading="eager"
+        loading="lazy"
         decoding="async"
       />
     </span>

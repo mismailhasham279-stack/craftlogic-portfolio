@@ -13,7 +13,12 @@ export function MagneticButton({ href, children, variant = "solid", className }:
 
   const onMove = (e: React.MouseEvent) => {
     const el = ref.current;
-    if (!el || window.matchMedia("(pointer: coarse)").matches) return;
+    if (
+      !el ||
+      window.matchMedia("(pointer: coarse)").matches ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    )
+      return;
     const r = el.getBoundingClientRect();
     const x = (e.clientX - (r.left + r.width / 2)) * 0.22;
     const y = (e.clientY - (r.top + r.height / 2)) * 0.32;
@@ -31,7 +36,7 @@ export function MagneticButton({ href, children, variant = "solid", className }:
       onMouseMove={onMove}
       onMouseLeave={reset}
       className={cn(
-        "group relative inline-flex items-center gap-2 whitespace-nowrap rounded-full px-7 py-3.5 text-sm font-medium tracking-tight transition-[transform,background-color,border-color,color] duration-300 ease-out",
+        "focus-ring group relative inline-flex items-center gap-2 whitespace-nowrap rounded-full px-7 py-3.5 text-sm font-medium tracking-tight transition-[transform,background-color,border-color,color] duration-300 ease-out",
         variant === "solid"
           ? "bg-primary text-primary-foreground hover:bg-primary/90"
           : "hairline text-foreground hover:border-primary/60 hover:bg-primary/5",
