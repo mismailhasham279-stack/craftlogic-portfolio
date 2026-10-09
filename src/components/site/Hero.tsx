@@ -1,73 +1,75 @@
-import { useReducedMotion, motion } from "framer-motion";
+import React from 'react';
+import { ArrowUpRight, ShieldCheck, Terminal, Sparkles, Layers } from 'lucide-react';
 
-export function Hero() {
-  const shouldReduceMotion = useReducedMotion();
-
+export const Hero: React.FC = () => {
   return (
-    <section
-      id="home"
-      className="relative flex min-h-[calc(100svh-72px)] items-center overflow-hidden bg-background pt-32 pb-16 md:pt-36 md:pb-20"
-    >
-      <motion.div
-        initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 14 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.65, ease: "easeOut" }}
-        className="mx-auto grid w-full max-w-[1400px] items-center gap-12 px-6 md:px-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16"
-      >
-        <div>
-          <div className="flex items-center gap-3">
-            <span className="h-px w-10 shrink-0 bg-primary" />
-            <span className="text-[10px] font-medium tracking-[0.18em] text-muted-foreground uppercase sm:text-[11px] sm:tracking-[0.22em]">
-              CRAFTLOGIC — DIGITAL EXPERIENCES FOR MODERN BUSINESSES
-            </span>
-          </div>
+    <section className="relative min-h-[92vh] flex items-center justify-center overflow-hidden luxury-noise px-6 pt-32 pb-20">
+      {/* Dynamic Ambient Blur Spheres */}
+      <div 
+        aria-hidden="true" 
+        className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[650px] h-[400px] bg-gradient-to-tr from-indigo-600/20 via-sky-500/20 to-transparent blur-[140px] rounded-full" 
+      />
+      <div 
+        aria-hidden="true" 
+        className="pointer-events-none absolute bottom-10 right-10 w-[350px] h-[350px] bg-sky-500/10 blur-[100px] rounded-full" 
+      />
 
-          <h1 className="font-display mt-8 text-[2.8rem] leading-[1.04] font-bold tracking-tight sm:text-6xl lg:text-[4.35rem]">
-            <span className="block">Your Website Is</span>
-            <span className="block">Your Digital Office.</span>
-          </h1>
-
-          <p className="mt-7 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
-            Professional websites designed to build trust, showcase your business and make it easier
-            for customers to take the next step.
-          </p>
-
-          <div className="mt-9 flex flex-wrap items-center gap-4">
-            <a
-              href="#start"
-              className="focus-ring inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3.5 text-sm font-semibold tracking-tight text-primary-foreground transition-[background-color,transform] duration-300 hover:-translate-y-0.5 hover:bg-primary/90 sm:px-7"
-            >
-              Start a Project <span aria-hidden="true">→</span>
-            </a>
-            <a
-              href="#work"
-              className="hairline focus-ring inline-flex items-center rounded-full px-5 py-3.5 text-sm font-medium tracking-tight text-foreground transition-colors duration-300 hover:border-primary/60 hover:bg-primary/5 sm:px-7"
-            >
-              View Our Work
-            </a>
-          </div>
+      <div className="relative max-w-6xl mx-auto w-full flex flex-col items-center text-center">
+        {/* Elite Badge */}
+        <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-white/10 bg-white/[0.03] backdrop-blur-md mb-8 animate-fade-in shadow-inner">
+          <Sparkles className="w-4 h-4 text-sky-400" />
+          <span className="text-xs uppercase tracking-[0.2em] font-semibold text-slate-300">
+            CraftLogic &bull; Engineering &amp; Architecture
+          </span>
         </div>
 
-        <figure className="relative overflow-hidden rounded-2xl border border-primary/30 bg-surface shadow-[0_32px_100px_-38px_rgba(0,0,0,0.85)]">
-          <img
-            src="/hero-office.jpg"
-            alt="A refined, glass-walled modern office with a welcoming lounge and workspace"
-            width={1800}
-            height={1350}
-            fetchPriority="high"
-            decoding="async"
-            className="aspect-[4/3] w-full object-cover lg:aspect-[1.08/1]"
-          />
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/45 via-black/5 to-black/10"
-          />
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-y-8 right-0 w-px bg-primary/55"
-          />
-        </figure>
-      </motion.div>
+        {/* Hero Headline */}
+        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight text-white max-w-5xl leading-[1.04]">
+          Engineered for Scale.{' '}
+          <span className="block bg-gradient-to-r from-sky-400 via-indigo-300 to-white bg-clip-text text-transparent">
+            Designed for Impact.
+          </span>
+        </h1>
+
+        {/* Sub-headline */}
+        <p className="mt-8 text-base sm:text-lg md:text-xl text-slate-400 max-w-2xl font-normal leading-relaxed">
+          CraftLogic bridges enterprise-grade backend infrastructure with bespoke, ultra-responsive digital systems. Zero bloat. Sub-50ms latency. Pure performance.
+        </p>
+
+        {/* Action Controls */}
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-5">
+          <a
+            href="#work"
+            className="group relative inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-white text-slate-950 font-semibold text-sm transition-all duration-300 hover:bg-slate-200 active:scale-95 shadow-[0_0_40px_rgba(255,255,255,0.25)]"
+          >
+            Explore Client Systems
+            <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+          </a>
+
+          <a
+            href="#contact"
+            className="inline-flex items-center gap-2.5 px-8 py-4 rounded-xl border border-white/15 bg-white/[0.02] hover:bg-white/[0.07] text-white font-medium text-sm transition-all duration-300 backdrop-blur-md"
+          >
+            <Terminal className="w-4 h-4 text-sky-400" />
+            Discuss Architecture
+          </a>
+        </div>
+
+        {/* Production Metrics Grid */}
+        <div className="mt-20 w-full grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl pt-10 border-t border-white/10">
+          {[
+            { metric: '99+', label: 'Performance Score', icon: ShieldCheck },
+            { metric: '<50ms', label: 'Edge TTFB Overhead', icon: Terminal },
+            { metric: '100%', label: 'Type-Safe Architecture', icon: Layers },
+            { metric: 'SLA 99.9%', label: 'Infrastructure Resiliency', icon: Sparkles },
+          ].map((item, idx) => (
+            <div key={idx} className="flex flex-col items-center p-4 rounded-xl bg-white/[0.01] border border-white/5">
+              <span className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">{item.metric}</span>
+              <span className="text-xs uppercase tracking-wider text-slate-400 mt-1 font-medium">{item.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
     </section>
   );
-}
+};
